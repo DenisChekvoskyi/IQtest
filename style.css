@@ -320,6 +320,19 @@ header {
   top: 20px;
 }
 
+.iqInStart-lightningFirstForStart {
+  position: absolute;
+  left: 0;
+  bottom: 135px;
+}
+
+.iqInStart-lightningSecondForStart {
+  position: absolute;
+  transform: scaleX(-1);
+  right: 0;
+  bottom: 95px;
+}
+
 .burgerMenu {
   display: none;
   position: relative;
@@ -629,6 +642,7 @@ form .color {
 }
 
 .call {
+  position: relative;
   display: flex;
   margin: 0 auto;
   margin-top: 10px;
@@ -638,6 +652,7 @@ form .color {
   padding: 30px 15px;
   cursor: pointer;
   user-select: none;
+  z-index: 9;
 }
 
 .call p {
