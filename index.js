@@ -68,14 +68,14 @@ window.addEventListener("DOMContentLoaded", () => {
     const headerFinish = document.querySelector(".headerFinish");
 
     questionsPage.style.display = "none";
-    headerLogo.style.display = "none";
-    headerFinish.style.display = "none";
 
     btnForStartTest.forEach((item) => {
       item.addEventListener("click", () => {
+        count = 1;
         mainPage.style.display = "none";
         questionsPage.style.display = "block";
         headerLogo.style.display = "flex";
+        headerFinish.style.display = "none";
       });
     });
 
@@ -89,13 +89,15 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  let count = 1;
+
   function switchingPagesForTest() {
     const questionsPages = document.querySelectorAll(".questions");
     const btns = document.querySelectorAll(".form-btn");
     const loadingPage = document.querySelector("#loading");
     const resultPage = document.querySelector("#result");
-
-    let count = 1;
+    const headerLogo = document.querySelector(".headerLogo");
+    const headerFinish = document.querySelector(".headerFinish");
 
     const isVisible = () => {
       questionsPages.forEach((page) => {
@@ -110,16 +112,16 @@ window.addEventListener("DOMContentLoaded", () => {
             page.style.display = "none";
             loadingPage.style.display = "none";
             resultPage.style.display = "block";
+            headerLogo.style.display = "none";
+            headerFinish.style.display = "flex";
             startTimer(600, "#timer");
+            visibilityResult();
           }, 1500);
         } else {
           page.style.display = "none";
         }
       });
     };
-    if (count === 13) {
-      isVisible();
-    }
     isVisible();
 
     btns.forEach((btn) => {
@@ -204,10 +206,55 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function progress() {
+    const progressStatus = document.querySelectorAll(".progress span");
+
+    const allSlides = progressStatus.length;
+    progressStatus.forEach((item, i) => {
+      item.style.width = (i / (allSlides - 1)) * 100 + "%";
+    });
+  }
+
+  let isVisibilityResultCalled = false;
+
+  function visibilityResult() {
+    if (isVisibilityResultCalled) {
+      return;
+    }
+
+    const trigger = document.querySelector("#result");
+
+    const div = document.createElement("div");
+    const header = document.createElement("h3");
+    const ul = document.createElement("ul");
+    ul.style.listStyleType = "none";
+
+    header.textContent = `Ваши ответы:`;
+    header.style.color = "#fff";
+    header.style.marginTop = "10px";
+
+    div.style.cssText = "display: flex; flex-direction: column; align-items: center";
+
+    Object.entries(res).forEach((item, i) => {
+      const li = document.createElement("li");
+      li.style.fontSize = "14px";
+      li.style.color = "#fff";
+      li.textContent = `№${i + 1}: ${item[1]}`;
+      ul.appendChild(li);
+    });
+
+    div.appendChild(header);
+    div.appendChild(ul);
+
+    trigger.appendChild(div);
+    isVisibilityResultCalled = true;
+  }
+
   burger();
   btnForForm();
   pages();
   switchingPagesForTest();
   form();
   onTriggerForSubmit();
+  progress();
 });

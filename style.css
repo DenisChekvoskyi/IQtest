@@ -12,7 +12,6 @@
   min-width: 320px;
   max-width: 768px;
   margin: 0 auto;
-  z-index: 1;
 }
 
 header {
@@ -44,13 +43,17 @@ header {
 }
 
 .headerLogo {
+  display: none;
   justify-content: center;
   align-items: center;
+  margin-left: -46px;
 }
 
 .headerFinish {
+  display: none;
   justify-content: center;
   align-items: center;
+  margin-left: -46px;
 }
 
 .headerFinish p {
@@ -390,14 +393,17 @@ header {
 }
 
 .questions {
+  display: none;
   position: relative;
   padding-top: 63px;
-  height: 100vh;
+  min-height: 100vh;
   background: url("img/starry_sky.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 form {
-  margin-top: 60px;
+  margin-top: 45px;
 }
 
 form p {
@@ -522,6 +528,12 @@ form .color {
   flex-direction: column;
 }
 
+.wrapp {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .questions-loading {
   font-family: "PT Serif";
   font-weight: 400;
@@ -566,6 +578,7 @@ form .color {
   text-transform: lowercase;
   color: #ffffff;
   margin-top: 15px;
+  padding: 0 10px;
 }
 
 .quicker {
@@ -624,6 +637,7 @@ form .color {
   width: 290px;
   padding: 30px 15px;
   cursor: pointer;
+  user-select: none;
 }
 
 .call p {
@@ -634,4 +648,21 @@ form .color {
   letter-spacing: 0.05em;
   color: #ffffff;
   margin-left: 18px;
+}
+
+.progress {
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 260px;
+  height: 11px;
+  background-color: #f2f3f3;
+  border-radius: 10px;
+}
+
+.progress span {
+  display: block;
+  height: 100%;
+  background-color: #3bde7c;
+  border-radius: 10px;
+  width: 0%;
 }
